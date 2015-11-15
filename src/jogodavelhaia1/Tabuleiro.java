@@ -32,7 +32,7 @@ public class Tabuleiro {
         }
     }
     
-    public boolean marcaY(int x, int y){
+    public boolean marcaO(int x, int y){
         if(x>=3 || x<0 || y>=3 || y<0){
             return false;
         }
@@ -105,5 +105,9 @@ public class Tabuleiro {
             return true;
             }
         return false;
+    }
+    
+    public char[][] getTabuleiro(){
+        return tab;
     }
 }

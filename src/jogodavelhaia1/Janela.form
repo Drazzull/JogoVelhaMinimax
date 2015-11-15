@@ -257,22 +257,49 @@
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="posicao11">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="posicao11ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="posicao20">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="posicao20ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="posicao21">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="posicao21ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="posicao22">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="posicao22ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="posicao10">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="posicao10ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="posicao00">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="posicao00ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="posicao12">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="posicao12ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="posicao01">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="posicao01ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="posicao02">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="posicao02ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -5,6 +5,7 @@
 package jogodavelhaia1;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,14 +13,23 @@ import javax.swing.ButtonGroup;
  */
 public class Janela extends javax.swing.JFrame {
     private Tabuleiro tabuleiro;
-    private ModoDeJogo modoDeJogo;
-    private PrimeiroJogar primeiroAJogar;
+    private boolean jogando;
+    private boolean jogadorJogando;
+    private MinMax jogoMinMax;
+    private PodaAlfaBeta jogoPodaAlfaBeta;
     /**
      * Creates new form Janela
      */
     public Janela() {
         tabuleiro = new Tabuleiro();
+        jogando = false;
+        jogadorJogando = true;
         initComponents();
+    }
+    
+    public void jogando(){
+        while(jogadorJogando);
+        JOptionPane.showMessageDialog(null, "O jogador jogou");
     }
 
     /**
@@ -104,6 +114,60 @@ public class Janela extends javax.swing.JFrame {
         iniciarResetar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iniciarResetarActionPerformed(evt);
+            }
+        });
+
+        posicao11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                posicao11ActionPerformed(evt);
+            }
+        });
+
+        posicao20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                posicao20ActionPerformed(evt);
+            }
+        });
+
+        posicao21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                posicao21ActionPerformed(evt);
+            }
+        });
+
+        posicao22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                posicao22ActionPerformed(evt);
+            }
+        });
+
+        posicao10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                posicao10ActionPerformed(evt);
+            }
+        });
+
+        posicao00.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                posicao00ActionPerformed(evt);
+            }
+        });
+
+        posicao12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                posicao12ActionPerformed(evt);
+            }
+        });
+
+        posicao01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                posicao01ActionPerformed(evt);
+            }
+        });
+
+        posicao02.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                posicao02ActionPerformed(evt);
             }
         });
 
@@ -228,9 +292,13 @@ public class Janela extends javax.swing.JFrame {
     }//GEN-LAST:event_podaAlfaBetaActionPerformed
 
     private void iniciarResetarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarResetarActionPerformed
-        tabuleiro = null;
-        System.gc();
-        tabuleiro = new Tabuleiro();
+        if((!(jogador.isSelected()) && !(pc.isSelected())) || (!(minMax.isSelected()) && !(podaAlfaBeta.isSelected()))){
+            JOptionPane.showMessageDialog(null, "Selecione quem inicia jogando e qual algoritmo de busca competitiva utilizar antes de começar a jogar!");
+        } else{
+            System.gc();
+            tabuleiro = new Tabuleiro();
+            jogando = true;
+        }
     }//GEN-LAST:event_iniciarResetarActionPerformed
 
     private void pcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcActionPerformed
@@ -240,6 +308,114 @@ public class Janela extends javax.swing.JFrame {
     private void jogadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jogadorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jogadorActionPerformed
+
+    private void posicao00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posicao00ActionPerformed
+        boolean jogada = tabuleiro.marcaO(0, 0);
+        if(!(jogada) || !(jogando)){
+           JOptionPane.showMessageDialog(null, "Jogada inválida");
+        } else if(jogada && jogando){
+            posicao00.setText("O");
+            jogadorJogando = false;
+        } else{
+          JOptionPane.showMessageDialog(null, "Jogada inválida");  
+        }
+    }//GEN-LAST:event_posicao00ActionPerformed
+
+    private void posicao01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posicao01ActionPerformed
+        boolean jogada = tabuleiro.marcaO(0, 1);
+        if(!(jogada) || !(jogando)){
+           JOptionPane.showMessageDialog(null, "Jogada inválida");
+        } else if(jogada && jogando){
+            posicao01.setText("O");
+            jogadorJogando = false;
+        } else{
+          JOptionPane.showMessageDialog(null, "Jogada inválida");  
+        }
+    }//GEN-LAST:event_posicao01ActionPerformed
+
+    private void posicao02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posicao02ActionPerformed
+        boolean jogada = tabuleiro.marcaO(0, 2);
+        if(!(jogada) || !(jogando)){
+           JOptionPane.showMessageDialog(null, "Jogada inválida");
+        } else if(jogada && jogando){
+            posicao02.setText("O");
+            jogadorJogando = false;
+        } else{
+          JOptionPane.showMessageDialog(null, "Jogada inválida");  
+        }
+    }//GEN-LAST:event_posicao02ActionPerformed
+
+    private void posicao10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posicao10ActionPerformed
+        boolean jogada = tabuleiro.marcaO(1, 0);
+        if(!(jogada) || !(jogando)){
+           JOptionPane.showMessageDialog(null, "Jogada inválida");
+        } else if(jogada && jogando){
+            posicao10.setText("O");
+            jogadorJogando = false;
+        } else{
+          JOptionPane.showMessageDialog(null, "Jogada inválida");  
+        }
+    }//GEN-LAST:event_posicao10ActionPerformed
+
+    private void posicao11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posicao11ActionPerformed
+        boolean jogada = tabuleiro.marcaO(1, 1);
+        if(!(jogada) || !(jogando)){
+           JOptionPane.showMessageDialog(null, "Jogada inválida");
+        } else if(jogada && jogando){
+            posicao11.setText("O");
+            jogadorJogando = false;
+        } else{
+          JOptionPane.showMessageDialog(null, "Jogada inválida");  
+        }
+    }//GEN-LAST:event_posicao11ActionPerformed
+
+    private void posicao12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posicao12ActionPerformed
+        boolean jogada = tabuleiro.marcaO(1, 2);
+        if(!(jogada) || !(jogando)){
+           JOptionPane.showMessageDialog(null, "Jogada inválida");
+        } else if(jogada && jogando){
+            posicao12.setText("O");
+            jogadorJogando = false;
+        } else{
+          JOptionPane.showMessageDialog(null, "Jogada inválida");  
+        }
+    }//GEN-LAST:event_posicao12ActionPerformed
+
+    private void posicao20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posicao20ActionPerformed
+        boolean jogada = tabuleiro.marcaO(2, 0);
+        if(!(jogada) || !(jogando)){
+           JOptionPane.showMessageDialog(null, "Jogada inválida");
+        } else if(jogada && jogando){
+            posicao20.setText("O");
+            jogadorJogando = false;
+        } else{
+          JOptionPane.showMessageDialog(null, "Jogada inválida");  
+        }
+    }//GEN-LAST:event_posicao20ActionPerformed
+
+    private void posicao21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posicao21ActionPerformed
+        boolean jogada = tabuleiro.marcaO(2, 1);
+        if(!(jogada) || !(jogando)){
+           JOptionPane.showMessageDialog(null, "Jogada inválida");
+        } else if(jogada && jogando){
+            posicao21.setText("O");
+            jogadorJogando = false;
+        } else{
+          JOptionPane.showMessageDialog(null, "Jogada inválida");  
+        }
+    }//GEN-LAST:event_posicao21ActionPerformed
+
+    private void posicao22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posicao22ActionPerformed
+        boolean jogada = tabuleiro.marcaO(2, 2);
+        if(!(jogada) || !(jogando)){
+           JOptionPane.showMessageDialog(null, "Jogada inválida");
+        } else if(jogada && jogando){
+            posicao22.setText("O");
+            jogadorJogando = false;
+        } else{
+          JOptionPane.showMessageDialog(null, "Jogada inválida");  
+        }
+    }//GEN-LAST:event_posicao22ActionPerformed
 
     /**
      * @param args the command line arguments
