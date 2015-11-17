@@ -42,7 +42,7 @@ public class Janela extends javax.swing.JFrame {
     }
     
     public void obtemNosProfundidade(int profundidade, long nos){
-        info.setText("Profundidade: "+profundidade+"\nNós: "+nos);
+        info.setText("Profundidade: "+nos+"\nNós: "+profundidade);
     }
     
     public void jogadaDaIA(Coordenada pos){
@@ -354,8 +354,7 @@ public class Janela extends javax.swing.JFrame {
             if(minMax.isSelected()){
                 jogoMinMax = new MiniMax(3);
             } else{
-                JOptionPane.showMessageDialog(null, "Not yet implement");
-                minMax.setSelected(true);
+                jogoPodaAlfaBeta = new PodaAlfaBeta(3);
             }
             
             if(pc.isSelected()){
@@ -409,6 +408,23 @@ public class Janela extends javax.swing.JFrame {
                     } else{
                         jogadorJogando = true;
                     }
+                } else{
+                    jogoPodaAlfaBeta.nos = 0;
+                    jogoPodaAlfaBeta.profundidade = 0;
+                    Coordenada pos = jogoPodaAlfaBeta.jogadaComputador(tabuleiro);
+                    tabuleiro.marcaX(pos.getX(), pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
+                    jogadaDaIA(pos);
+                    obtemNosProfundidade(jogoPodaAlfaBeta.profundidade, jogoPodaAlfaBeta.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
+                        JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
+                        iniciarResetarActionPerformed(evt);
+                    } else if(tabuleiro.empate()){
+                        JOptionPane.showMessageDialog(null, "Empatou :|");
+                        iniciarResetarActionPerformed(evt);
+                    } else{
+                        jogadorJogando = true;
+                    }
                 }
             }
             
@@ -440,6 +456,23 @@ public class Janela extends javax.swing.JFrame {
                     System.out.println(pos.getX()+" "+pos.getY());
                     jogadaDaIA(pos);
                     obtemNosProfundidade(jogoMinMax.profundidade, jogoMinMax.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
+                        JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
+                        iniciarResetarActionPerformed(evt);
+                    } else if(tabuleiro.empate()){
+                        JOptionPane.showMessageDialog(null, "Empatou :|");
+                        iniciarResetarActionPerformed(evt);
+                    } else{
+                        jogadorJogando = true;
+                    }
+                } else{
+                    jogoPodaAlfaBeta.nos = 0;
+                    jogoPodaAlfaBeta.profundidade = 0;
+                    Coordenada pos = jogoPodaAlfaBeta.jogadaComputador(tabuleiro);
+                    tabuleiro.marcaX(pos.getX(), pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
+                    jogadaDaIA(pos);
+                    obtemNosProfundidade(jogoPodaAlfaBeta.profundidade, jogoPodaAlfaBeta.nos);
                     if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                         JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
                         iniciarResetarActionPerformed(evt);
@@ -489,6 +522,23 @@ public class Janela extends javax.swing.JFrame {
                     } else{
                         jogadorJogando = true;
                     }
+                } else{
+                    jogoPodaAlfaBeta.nos = 0;
+                    jogoPodaAlfaBeta.profundidade = 0;
+                    Coordenada pos = jogoPodaAlfaBeta.jogadaComputador(tabuleiro);
+                    tabuleiro.marcaX(pos.getX(), pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
+                    jogadaDaIA(pos);
+                    obtemNosProfundidade(jogoPodaAlfaBeta.profundidade, jogoPodaAlfaBeta.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
+                        JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
+                        iniciarResetarActionPerformed(evt);
+                    } else if(tabuleiro.empate()){
+                        JOptionPane.showMessageDialog(null, "Empatou :|");
+                        iniciarResetarActionPerformed(evt);
+                    } else{
+                        jogadorJogando = true;
+                    }
                 }
             }
             
@@ -520,6 +570,23 @@ public class Janela extends javax.swing.JFrame {
                     System.out.println(pos.getX()+" "+pos.getY());
                     jogadaDaIA(pos);
                     obtemNosProfundidade(jogoMinMax.profundidade, jogoMinMax.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
+                        JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
+                        iniciarResetarActionPerformed(evt);
+                    } else if(tabuleiro.empate()){
+                        JOptionPane.showMessageDialog(null, "Empatou :|");
+                        iniciarResetarActionPerformed(evt);
+                    } else{
+                        jogadorJogando = true;
+                    }
+                } else{
+                    jogoPodaAlfaBeta.nos = 0;
+                    jogoPodaAlfaBeta.profundidade = 0;
+                    Coordenada pos = jogoPodaAlfaBeta.jogadaComputador(tabuleiro);
+                    tabuleiro.marcaX(pos.getX(), pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
+                    jogadaDaIA(pos);
+                    obtemNosProfundidade(jogoPodaAlfaBeta.profundidade, jogoPodaAlfaBeta.nos);
                     if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                         JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
                         iniciarResetarActionPerformed(evt);
@@ -569,6 +636,23 @@ public class Janela extends javax.swing.JFrame {
                     } else{
                         jogadorJogando = true;
                     }
+                } else{
+                    jogoPodaAlfaBeta.nos = 0;
+                    jogoPodaAlfaBeta.profundidade = 0;
+                    Coordenada pos = jogoPodaAlfaBeta.jogadaComputador(tabuleiro);
+                    tabuleiro.marcaX(pos.getX(), pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
+                    jogadaDaIA(pos);
+                    obtemNosProfundidade(jogoPodaAlfaBeta.profundidade, jogoPodaAlfaBeta.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
+                        JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
+                        iniciarResetarActionPerformed(evt);
+                    } else if(tabuleiro.empate()){
+                        JOptionPane.showMessageDialog(null, "Empatou :|");
+                        iniciarResetarActionPerformed(evt);
+                    } else{
+                        jogadorJogando = true;
+                    }
                 }
             }
             
@@ -600,6 +684,23 @@ public class Janela extends javax.swing.JFrame {
                     System.out.println(pos.getX()+" "+pos.getY());
                     jogadaDaIA(pos);
                     obtemNosProfundidade(jogoMinMax.profundidade, jogoMinMax.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
+                        JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
+                        iniciarResetarActionPerformed(evt);
+                    } else if(tabuleiro.empate()){
+                        JOptionPane.showMessageDialog(null, "Empatou :|");
+                        iniciarResetarActionPerformed(evt);
+                    } else{
+                        jogadorJogando = true;
+                    }
+                } else{
+                    jogoPodaAlfaBeta.nos = 0;
+                    jogoPodaAlfaBeta.profundidade = 0;
+                    Coordenada pos = jogoPodaAlfaBeta.jogadaComputador(tabuleiro);
+                    tabuleiro.marcaX(pos.getX(), pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
+                    jogadaDaIA(pos);
+                    obtemNosProfundidade(jogoPodaAlfaBeta.profundidade, jogoPodaAlfaBeta.nos);
                     if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                         JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
                         iniciarResetarActionPerformed(evt);
@@ -649,6 +750,23 @@ public class Janela extends javax.swing.JFrame {
                     } else{
                         jogadorJogando = true;
                     }
+                } else{
+                    jogoPodaAlfaBeta.nos = 0;
+                    jogoPodaAlfaBeta.profundidade = 0;
+                    Coordenada pos = jogoPodaAlfaBeta.jogadaComputador(tabuleiro);
+                    tabuleiro.marcaX(pos.getX(), pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
+                    jogadaDaIA(pos);
+                    obtemNosProfundidade(jogoPodaAlfaBeta.profundidade, jogoPodaAlfaBeta.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
+                        JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
+                        iniciarResetarActionPerformed(evt);
+                    } else if(tabuleiro.empate()){
+                        JOptionPane.showMessageDialog(null, "Empatou :|");
+                        iniciarResetarActionPerformed(evt);
+                    } else{
+                        jogadorJogando = true;
+                    }
                 }
             }
             
@@ -689,6 +807,23 @@ public class Janela extends javax.swing.JFrame {
                     } else{
                         jogadorJogando = true;
                     }
+                } else{
+                    jogoPodaAlfaBeta.nos = 0;
+                    jogoPodaAlfaBeta.profundidade = 0;
+                    Coordenada pos = jogoPodaAlfaBeta.jogadaComputador(tabuleiro);
+                    tabuleiro.marcaX(pos.getX(), pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
+                    jogadaDaIA(pos);
+                    obtemNosProfundidade(jogoPodaAlfaBeta.profundidade, jogoPodaAlfaBeta.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
+                        JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
+                        iniciarResetarActionPerformed(evt);
+                    } else if(tabuleiro.empate()){
+                        JOptionPane.showMessageDialog(null, "Empatou :|");
+                        iniciarResetarActionPerformed(evt);
+                    } else{
+                        jogadorJogando = true;
+                    }
                 }
             }
             
@@ -720,6 +855,23 @@ public class Janela extends javax.swing.JFrame {
                     System.out.println(pos.getX()+" "+pos.getY());
                     jogadaDaIA(pos);
                     obtemNosProfundidade(jogoMinMax.profundidade, jogoMinMax.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
+                        JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
+                        iniciarResetarActionPerformed(evt);
+                    } else if(tabuleiro.empate()){
+                        JOptionPane.showMessageDialog(null, "Empatou :|");
+                        iniciarResetarActionPerformed(evt);
+                    } else{
+                        jogadorJogando = true;
+                    }
+                } else{
+                    jogoPodaAlfaBeta.nos = 0;
+                    jogoPodaAlfaBeta.profundidade = 0;
+                    Coordenada pos = jogoPodaAlfaBeta.jogadaComputador(tabuleiro);
+                    tabuleiro.marcaX(pos.getX(), pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
+                    jogadaDaIA(pos);
+                    obtemNosProfundidade(jogoPodaAlfaBeta.profundidade, jogoPodaAlfaBeta.nos);
                     if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                         JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
                         iniciarResetarActionPerformed(evt);
