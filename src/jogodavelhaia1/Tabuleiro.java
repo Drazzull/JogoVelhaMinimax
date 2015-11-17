@@ -12,8 +12,8 @@ public class Tabuleiro {
     private char[][] tab = new char[3][3];
 
     public Tabuleiro() {
-        for(int i = 0; i < 2; i++){
-            for(int j = 0; j < 2; j++){
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
                 this.tab[i][j] = '-';
             }
         }
@@ -43,6 +43,14 @@ public class Tabuleiro {
         else{
             return false;
         }
+    }
+    
+    public boolean marcaVazio(int x, int y){
+        if(x>=3 || x<0 || y>=3 || y<0){
+            return false;
+        }
+        this.tab[x][y] = '-';
+        return true;
     }
     
     public boolean fimdejogo(){

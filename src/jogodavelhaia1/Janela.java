@@ -16,7 +16,7 @@ public class Janela extends javax.swing.JFrame {
     private Tabuleiro tabuleiro;
     private boolean jogando;
     private boolean jogadorJogando;
-    private MinMax jogoMinMax;
+    private MiniMax jogoMinMax;
     private PodaAlfaBeta jogoPodaAlfaBeta;
     /**
      * Creates new form Janela
@@ -38,6 +38,11 @@ public class Janela extends javax.swing.JFrame {
         posicao20.setText("");
         posicao21.setText("");
         posicao22.setText("");
+        info.setText("");
+    }
+    
+    public void obtemNosProfundidade(int profundidade, long nos){
+        info.setText("Profundidade: "+profundidade+"\nNós: "+nos);
     }
     
     public void jogadaDaIA(Coordenada pos){
@@ -56,7 +61,7 @@ public class Janela extends javax.swing.JFrame {
         } else if(pos.getX() == 1 && pos.getY() == 1){
             posicao11.setText("X");
             posicao11.setForeground(Color.red);
-        }else if(pos.getX() == 1 && pos.getY() == 2){
+        } else if(pos.getX() == 1 && pos.getY() == 2){
             posicao12.setText("X");
             posicao12.setForeground(Color.red);
         } else if(pos.getX() == 2 && pos.getY() == 0){
@@ -105,8 +110,11 @@ public class Janela extends javax.swing.JFrame {
         posicao12 = new javax.swing.JButton();
         posicao01 = new javax.swing.JButton();
         posicao02 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Jogo da Velha - IA1 - MiniMax/AlfaBeta");
+        setResizable(false);
 
         buttonGroup1.add(minMax);
         minMax.setText("MinMax");
@@ -212,38 +220,12 @@ public class Janela extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Informações");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(iniciarResetar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
-                            .addComponent(jSeparator3)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(minMax)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(podaAlfaBeta, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(pc)
-                                        .addGap(54, 54, 54)
-                                        .addComponent(jogador, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,6 +248,38 @@ public class Janela extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(posicao22, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(103, 103, 103))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(iniciarResetar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+                            .addComponent(jSeparator3)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(minMax)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(podaAlfaBeta, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(pc)
+                                                .addGap(54, 54, 54)
+                                                .addComponent(jogador, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabel3))
+                                .addGap(0, 76, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,18 +319,16 @@ public class Janela extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(posicao12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(posicao11, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(posicao21, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(posicao20, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(posicao22, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(posicao21, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(posicao20, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(posicao22, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -340,7 +352,7 @@ public class Janela extends javax.swing.JFrame {
             tabuleiro = new Tabuleiro();
             limpaTela();
             if(minMax.isSelected()){
-                jogoMinMax = new MinMax();
+                jogoMinMax = new MiniMax(3);
             } else{
                 JOptionPane.showMessageDialog(null, "Not yet implement");
                 minMax.setSelected(true);
@@ -372,7 +384,7 @@ public class Janela extends javax.swing.JFrame {
         } else if(jogada && jogando){
             posicao00.setText("O");
             posicao00.setForeground(Color.blue);
-            if(tabuleiro.fimdejogo()){
+            if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                 JOptionPane.showMessageDialog(null, "Você venceu!!! Parabéns :)");
                 iniciarResetarActionPerformed(evt);
             } else if(tabuleiro.empate()){
@@ -381,10 +393,14 @@ public class Janela extends javax.swing.JFrame {
             }else{
                 jogadorJogando = false;
                 if(minMax.isSelected()){
-                    Coordenada pos = jogoMinMax.minMax(tabuleiro);
+                    jogoMinMax.nos = 0;
+                    jogoMinMax.profundidade = 0;
+                    Coordenada pos = jogoMinMax.jogadaComputador(tabuleiro);
                     tabuleiro.marcaX(pos.getX(),pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
                     jogadaDaIA(pos);
-                    if(tabuleiro.fimdejogo()){
+                    obtemNosProfundidade(jogoMinMax.profundidade, jogoMinMax.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                         JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
                         iniciarResetarActionPerformed(evt);
                     } else if(tabuleiro.empate()){
@@ -408,7 +424,7 @@ public class Janela extends javax.swing.JFrame {
         } else if(jogada && jogando){
             posicao01.setText("O");
             posicao01.setForeground(Color.blue);
-            if(tabuleiro.fimdejogo()){
+            if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                 JOptionPane.showMessageDialog(null, "Você venceu!!! Parabéns :)");
                 iniciarResetarActionPerformed(evt);
             } else if(tabuleiro.empate()){
@@ -417,10 +433,14 @@ public class Janela extends javax.swing.JFrame {
             }else{
                 jogadorJogando = false;
                 if(minMax.isSelected()){
-                    Coordenada pos = jogoMinMax.minMax(tabuleiro);
+                    jogoMinMax.nos = 0;
+                    jogoMinMax.profundidade = 0;
+                    Coordenada pos = jogoMinMax.jogadaComputador(tabuleiro);
                     tabuleiro.marcaX(pos.getX(),pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
                     jogadaDaIA(pos);
-                    if(tabuleiro.fimdejogo()){
+                    obtemNosProfundidade(jogoMinMax.profundidade, jogoMinMax.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                         JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
                         iniciarResetarActionPerformed(evt);
                     } else if(tabuleiro.empate()){
@@ -444,7 +464,7 @@ public class Janela extends javax.swing.JFrame {
         } else if(jogada && jogando){
             posicao02.setText("O");
             posicao02.setForeground(Color.blue);
-            if(tabuleiro.fimdejogo()){
+            if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                 JOptionPane.showMessageDialog(null, "Você venceu!!! Parabéns :)");
                 iniciarResetarActionPerformed(evt);
             } else if(tabuleiro.empate()){
@@ -453,10 +473,14 @@ public class Janela extends javax.swing.JFrame {
             }else{
                 jogadorJogando = false;
                 if(minMax.isSelected()){
-                    Coordenada pos = jogoMinMax.minMax(tabuleiro);
+                    jogoMinMax.nos = 0;
+                    jogoMinMax.profundidade = 0;
+                    Coordenada pos = jogoMinMax.jogadaComputador(tabuleiro);
                     tabuleiro.marcaX(pos.getX(),pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
                     jogadaDaIA(pos);
-                    if(tabuleiro.fimdejogo()){
+                    obtemNosProfundidade(jogoMinMax.profundidade, jogoMinMax.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                         JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
                         iniciarResetarActionPerformed(evt);
                     } else if(tabuleiro.empate()){
@@ -480,7 +504,7 @@ public class Janela extends javax.swing.JFrame {
         } else if(jogada && jogando){
             posicao10.setText("O");
             posicao10.setForeground(Color.blue);
-            if(tabuleiro.fimdejogo()){
+            if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                 JOptionPane.showMessageDialog(null, "Você venceu!!! Parabéns :)");
                 iniciarResetarActionPerformed(evt);
             } else if(tabuleiro.empate()){
@@ -489,10 +513,14 @@ public class Janela extends javax.swing.JFrame {
             }else{
                 jogadorJogando = false;
                 if(minMax.isSelected()){
-                    Coordenada pos = jogoMinMax.minMax(tabuleiro);
+                    jogoMinMax.nos = 0;
+                    jogoMinMax.profundidade = 0;
+                    Coordenada pos = jogoMinMax.jogadaComputador(tabuleiro);
                     tabuleiro.marcaX(pos.getX(),pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
                     jogadaDaIA(pos);
-                    if(tabuleiro.fimdejogo()){
+                    obtemNosProfundidade(jogoMinMax.profundidade, jogoMinMax.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                         JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
                         iniciarResetarActionPerformed(evt);
                     } else if(tabuleiro.empate()){
@@ -510,13 +538,13 @@ public class Janela extends javax.swing.JFrame {
     }//GEN-LAST:event_posicao10ActionPerformed
 
     private void posicao11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posicao11ActionPerformed
-        boolean jogada = tabuleiro.marcaO(1, 1);
+       boolean jogada = tabuleiro.marcaO(1, 1);
         if(!(jogada) || !(jogando)){
            JOptionPane.showMessageDialog(null, "Jogada inválida");
         } else if(jogada && jogando){
             posicao11.setText("O");
             posicao11.setForeground(Color.blue);
-            if(tabuleiro.fimdejogo()){
+            if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                 JOptionPane.showMessageDialog(null, "Você venceu!!! Parabéns :)");
                 iniciarResetarActionPerformed(evt);
             } else if(tabuleiro.empate()){
@@ -525,10 +553,14 @@ public class Janela extends javax.swing.JFrame {
             }else{
                 jogadorJogando = false;
                 if(minMax.isSelected()){
-                    Coordenada pos = jogoMinMax.minMax(tabuleiro);
+                    jogoMinMax.nos = 0;
+                    jogoMinMax.profundidade = 0;
+                    Coordenada pos = jogoMinMax.jogadaComputador(tabuleiro);
                     tabuleiro.marcaX(pos.getX(),pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
                     jogadaDaIA(pos);
-                    if(tabuleiro.fimdejogo()){
+                    obtemNosProfundidade(jogoMinMax.profundidade, jogoMinMax.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                         JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
                         iniciarResetarActionPerformed(evt);
                     } else if(tabuleiro.empate()){
@@ -552,7 +584,7 @@ public class Janela extends javax.swing.JFrame {
         } else if(jogada && jogando){
             posicao12.setText("O");
             posicao12.setForeground(Color.blue);
-            if(tabuleiro.fimdejogo()){
+            if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                 JOptionPane.showMessageDialog(null, "Você venceu!!! Parabéns :)");
                 iniciarResetarActionPerformed(evt);
             } else if(tabuleiro.empate()){
@@ -561,10 +593,14 @@ public class Janela extends javax.swing.JFrame {
             }else{
                 jogadorJogando = false;
                 if(minMax.isSelected()){
-                    Coordenada pos = jogoMinMax.minMax(tabuleiro);
+                    jogoMinMax.nos = 0;
+                    jogoMinMax.profundidade = 0;
+                    Coordenada pos = jogoMinMax.jogadaComputador(tabuleiro);
                     tabuleiro.marcaX(pos.getX(),pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
                     jogadaDaIA(pos);
-                    if(tabuleiro.fimdejogo()){
+                    obtemNosProfundidade(jogoMinMax.profundidade, jogoMinMax.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                         JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
                         iniciarResetarActionPerformed(evt);
                     } else if(tabuleiro.empate()){
@@ -588,7 +624,7 @@ public class Janela extends javax.swing.JFrame {
         } else if(jogada && jogando){
             posicao20.setText("O");
             posicao20.setForeground(Color.blue);
-            if(tabuleiro.fimdejogo()){
+            if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                 JOptionPane.showMessageDialog(null, "Você venceu!!! Parabéns :)");
                 iniciarResetarActionPerformed(evt);
             } else if(tabuleiro.empate()){
@@ -597,10 +633,14 @@ public class Janela extends javax.swing.JFrame {
             }else{
                 jogadorJogando = false;
                 if(minMax.isSelected()){
-                    Coordenada pos = jogoMinMax.minMax(tabuleiro);
+                    jogoMinMax.nos = 0;
+                    jogoMinMax.profundidade = 0;
+                    Coordenada pos = jogoMinMax.jogadaComputador(tabuleiro);
                     tabuleiro.marcaX(pos.getX(),pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
                     jogadaDaIA(pos);
-                    if(tabuleiro.fimdejogo()){
+                    obtemNosProfundidade(jogoMinMax.profundidade, jogoMinMax.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                         JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
                         iniciarResetarActionPerformed(evt);
                     } else if(tabuleiro.empate()){
@@ -624,7 +664,7 @@ public class Janela extends javax.swing.JFrame {
         } else if(jogada && jogando){
             posicao21.setText("O");
             posicao21.setForeground(Color.blue);
-            if(tabuleiro.fimdejogo()){
+            if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                 JOptionPane.showMessageDialog(null, "Você venceu!!! Parabéns :)");
                 iniciarResetarActionPerformed(evt);
             } else if(tabuleiro.empate()){
@@ -633,10 +673,14 @@ public class Janela extends javax.swing.JFrame {
             }else{
                 jogadorJogando = false;
                 if(minMax.isSelected()){
-                    Coordenada pos = jogoMinMax.minMax(tabuleiro);
+                    jogoMinMax.nos = 0;
+                    jogoMinMax.profundidade = 0;
+                    Coordenada pos = jogoMinMax.jogadaComputador(tabuleiro);
                     tabuleiro.marcaX(pos.getX(),pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
                     jogadaDaIA(pos);
-                    if(tabuleiro.fimdejogo()){
+                    obtemNosProfundidade(jogoMinMax.profundidade, jogoMinMax.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                         JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
                         iniciarResetarActionPerformed(evt);
                     } else if(tabuleiro.empate()){
@@ -660,7 +704,7 @@ public class Janela extends javax.swing.JFrame {
         } else if(jogada && jogando){
             posicao22.setText("O");
             posicao22.setForeground(Color.blue);
-            if(tabuleiro.fimdejogo()){
+            if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                 JOptionPane.showMessageDialog(null, "Você venceu!!! Parabéns :)");
                 iniciarResetarActionPerformed(evt);
             } else if(tabuleiro.empate()){
@@ -669,10 +713,14 @@ public class Janela extends javax.swing.JFrame {
             }else{
                 jogadorJogando = false;
                 if(minMax.isSelected()){
-                    Coordenada pos = jogoMinMax.minMax(tabuleiro);
+                    jogoMinMax.nos = 0;
+                    jogoMinMax.profundidade = 0;
+                    Coordenada pos = jogoMinMax.jogadaComputador(tabuleiro);
                     tabuleiro.marcaX(pos.getX(),pos.getY());
+                    System.out.println(pos.getX()+" "+pos.getY());
                     jogadaDaIA(pos);
-                    if(tabuleiro.fimdejogo()){
+                    obtemNosProfundidade(jogoMinMax.profundidade, jogoMinMax.nos);
+                    if(tabuleiro.fimdejogo() && !(tabuleiro.empate())){
                         JOptionPane.showMessageDialog(null, "Você é um perdedor!!! :(");
                         iniciarResetarActionPerformed(evt);
                     } else if(tabuleiro.empate()){
@@ -730,6 +778,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JButton iniciarResetar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
