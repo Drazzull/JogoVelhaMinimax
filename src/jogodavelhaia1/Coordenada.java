@@ -10,12 +10,13 @@ package jogodavelhaia1;
  * @author Kaszuba
  */
 public class Coordenada {
-    private int x,y;
+
+    private int x, y;
 
     public Coordenada() {
-        x = y = -1; 
+        x = y = -1;
     }
-    
+
     public Coordenada(int x, int y) {
         this.x = x;
         this.y = y;
@@ -36,5 +37,5 @@ public class Coordenada {
     public void setY(int y) {
         this.y = y;
     }
-    
+
 }

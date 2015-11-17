@@ -9,5 +9,6 @@ package jogodavelhaia1;
  * @author José Luiz
  */
 public enum ModoDeJogo {
+
     MIN_MAX, PODA_ALFA_BETA
 }
