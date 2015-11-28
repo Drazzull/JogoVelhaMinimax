@@ -51,33 +51,50 @@ public class Janela extends javax.swing.JFrame {
         if (pos.getX() == 0 && pos.getY() == 0) {
             posicao00.setText("X");
             posicao00.setForeground(Color.red);
-        } else if (pos.getX() == 0 && pos.getY() == 1) {
+            return;
+        }
+        if (pos.getX() == 0 && pos.getY() == 1) {
             posicao01.setText("X");
             posicao01.setForeground(Color.red);
-        } else if (pos.getX() == 0 && pos.getY() == 2) {
+            return;
+        }
+        if (pos.getX() == 0 && pos.getY() == 2) {
             posicao02.setText("X");
             posicao02.setForeground(Color.red);
-        } else if (pos.getX() == 1 && pos.getY() == 0) {
+            return;
+        }
+        if (pos.getX() == 1 && pos.getY() == 0) {
             posicao10.setText("X");
             posicao10.setForeground(Color.red);
-        } else if (pos.getX() == 1 && pos.getY() == 1) {
+            return;
+        }
+        if (pos.getX() == 1 && pos.getY() == 1) {
             posicao11.setText("X");
             posicao11.setForeground(Color.red);
-        } else if (pos.getX() == 1 && pos.getY() == 2) {
+            return;
+        }
+        if (pos.getX() == 1 && pos.getY() == 2) {
             posicao12.setText("X");
             posicao12.setForeground(Color.red);
-        } else if (pos.getX() == 2 && pos.getY() == 0) {
+            return;
+        }
+        if (pos.getX() == 2 && pos.getY() == 0) {
             posicao20.setText("X");
             posicao20.setForeground(Color.red);
-        } else if (pos.getX() == 2 && pos.getY() == 1) {
+            return;
+        }
+        if (pos.getX() == 2 && pos.getY() == 1) {
             posicao21.setText("X");
             posicao21.setForeground(Color.red);
-        } else if (pos.getX() == 2 && pos.getY() == 2) {
+            return;
+        }
+        if (pos.getX() == 2 && pos.getY() == 2) {
             posicao22.setText("X");
             posicao22.setForeground(Color.red);
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro desconhecido!!!!!!");
+            return;
         }
+
+        JOptionPane.showMessageDialog(null, "Erro desconhecido!!!!!!");
     }
 
     /**
@@ -349,25 +366,30 @@ public class Janela extends javax.swing.JFrame {
     private void iniciarResetarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarResetarActionPerformed
         if ((!jogador.isSelected() && !pc.isSelected()) || (!minMax.isSelected() && !podaAlfaBeta.isSelected())) {
             JOptionPane.showMessageDialog(null, "Selecione quem inicia jogando e qual algoritmo de busca competitiva utilizar antes de começar a jogar!");
-        } else {
-            System.gc();
-            tabuleiro = new Tabuleiro();
-            limpaTela();
-            if (minMax.isSelected()) {
-                jogoMinMax = new MiniMax(3);
-            } else {
-                jogoPodaAlfaBeta = new PodaAlfaBeta(3);
-            }
-
-            if (pc.isSelected()) {
-                posicao11.setText("X");
-                posicao11.setForeground(Color.red);
-                tabuleiro.marcaX(1, 1);
-            } else {
-                JOptionPane.showMessageDialog(null, "Marque uma posição para iniciar o jogo...");
-            }
-            jogando = true;
+            return;
         }
+        System.gc();
+        tabuleiro = new Tabuleiro();
+        limpaTela();
+        if (minMax.isSelected()) {
+            jogoMinMax = new MiniMax(3);
+        }
+
+        if (podaAlfaBeta.isSelected()) {
+            jogoPodaAlfaBeta = new PodaAlfaBeta(3);
+        }
+
+        if (!pc.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Marque uma posição para iniciar o jogo...");
+            jogando = true;
+            return;
+        }
+
+        posicao11.setText("X");
+        posicao11.setForeground(Color.red);
+
+        tabuleiro.marcaX(1, 1);
+        jogando = true;
     }//GEN-LAST:event_iniciarResetarActionPerformed
 
     private void pcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcActionPerformed
@@ -382,7 +404,10 @@ public class Janela extends javax.swing.JFrame {
         boolean jogada = tabuleiro.marcaO(0, 0);
         if (!jogada || !jogando) {
             JOptionPane.showMessageDialog(null, "Jogada inválida");
-        } else if (jogada && jogando) {
+            return;
+        }
+
+        if (jogada && jogando) {
             posicao00.setText("O");
             posicao00.setForeground(Color.blue);
             if (tabuleiro.fimdejogo() && !tabuleiro.empate()) {
@@ -905,16 +930,21 @@ public class Janela extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Janela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Janela.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Janela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Janela.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Janela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Janela.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Janela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Janela.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
