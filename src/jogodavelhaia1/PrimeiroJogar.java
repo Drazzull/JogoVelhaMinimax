@@ -8,7 +8,7 @@ package jogodavelhaia1;
  *
  * @author José Luiz
  */
-public enum PrimeiroJogar {
-
+public enum PrimeiroJogar
+{
     PC, JOGADOR
 }

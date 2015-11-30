@@ -8,12 +8,13 @@ package jogodavelhaia1;
  *
  * @author José Luiz
  */
-public class JogoDaVelhaIA1 {
-
+public class JogoDaVelhaIA1
+{
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         Janela janela = new Janela();
         janela.setVisible(Boolean.TRUE);
     }
