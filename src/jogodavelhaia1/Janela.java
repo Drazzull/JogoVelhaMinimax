@@ -5,14 +5,13 @@
 package jogodavelhaia1;
 
 import java.awt.Color;
-import javax.swing.ButtonGroup;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
  * @author José Luiz
  */
-public class Janela extends javax.swing.JFrame
+public class Janela extends JFrame
 {
     private Tabuleiro tabuleiro;
     private boolean jogando;
@@ -468,19 +467,23 @@ public class Janela extends javax.swing.JFrame
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex)
+        }
+        catch (ClassNotFoundException ex)
         {
             java.util.logging.Logger.getLogger(Janela.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
+        }
+        catch (InstantiationException ex)
         {
             java.util.logging.Logger.getLogger(Janela.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
+        }
+        catch (IllegalAccessException ex)
         {
             java.util.logging.Logger.getLogger(Janela.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        }
+        catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
             java.util.logging.Logger.getLogger(Janela.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -507,10 +510,7 @@ public class Janela extends javax.swing.JFrame
      * @param y
      */
     private void jogar(
-            java.awt.event.ActionEvent evt,
-            javax.swing.JButton btn,
-            int x,
-            int y)
+            java.awt.event.ActionEvent evt, JButton btn, int x, int y)
     {
         // Jogada válida/inválida
         boolean jogada = tabuleiro.marcaO(x, y);

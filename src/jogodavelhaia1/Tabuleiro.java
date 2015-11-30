@@ -33,7 +33,8 @@ public class Tabuleiro
         {
             this.tab[x][y] = 'X';
             return true;
-        } else
+        }
+        else
         {
             return false;
         }
@@ -49,7 +50,8 @@ public class Tabuleiro
         {
             this.tab[x][y] = 'O';
             return true;
-        } else
+        }
+        else
         {
             return false;
         }

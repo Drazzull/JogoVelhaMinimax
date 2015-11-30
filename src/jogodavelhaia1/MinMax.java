@@ -4,8 +4,6 @@
  */
 package jogodavelhaia1;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author José Luiz
@@ -15,12 +13,12 @@ public class MinMax
     private final int vitoriaHumano = 1;
     private final int empate = 2;
     private final int vitoriaComputador = 3;
-    private int humano = 4;
-    private int computador = 5;
+    private final int humano = 4;
+    private final int computador = 5;
     private int profundidade = 0;
     private long nos = 0;
     private int turno = 0;
-    private Coordenada melhorJogada = new Coordenada();
+    private final Coordenada melhorJogada = new Coordenada();
 
     public int miniMax(Tabuleiro tabuleiro, int lado, int alpha, int beta, Coordenada melhorJogada)
     {
@@ -32,24 +30,21 @@ public class MinMax
         if (tabuleiro.fimdejogo() && turno == humano)
         {
             return vitoriaHumano;
-        } else
+        }
+        if (tabuleiro.fimdejogo() && turno == computador)
         {
-            if (tabuleiro.fimdejogo() && turno == computador)
-            {
-                return vitoriaComputador;
-            } else
-            {
-                if (tabuleiro.empate())
-                {
-                    return empate;
-                }
-            }
+            return vitoriaComputador;
+        }
+        if (tabuleiro.empate())
+        {
+            return empate;
         }
         if (lado == computador)
         {
             oponente = humano;
             valor = alpha;
-        } else
+        }
+        else
         {
             oponente = computador;
             valor = beta;
@@ -63,7 +58,8 @@ public class MinMax
                     if (lado == computador)
                     {
                         tabuleiro.marcaX(i, j);
-                    } else
+                    }
+                    else
                     {
                         tabuleiro.marcaO(j, j);
                     }
@@ -72,7 +68,8 @@ public class MinMax
                     if (lado == computador)
                     {
                         turno = humano;
-                    } else
+                    }
+                    else
                     {
                         turno = computador;
                     }
@@ -84,7 +81,8 @@ public class MinMax
                         {
                             alpha = repeticao;
                             valor = repeticao;
-                        } else
+                        }
+                        else
                         {
                             beta = repeticao;
                             valor = repeticao;

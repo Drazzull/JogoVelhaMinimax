@@ -34,12 +34,14 @@ public class MiniMax
                 if (tabuleiro.getTabuleiro()[i][j] == '-')
                 {
                     valores[i][j] = 0;
-                } else
+                }
+                else
                 {
                     if (tabuleiro.getTabuleiro()[i][j] == 'X')
                     {
                         valores[i][j] = 1;
-                    } else
+                    }
+                    else
                     {
                         valores[i][j] = -1;
                     }
@@ -59,12 +61,14 @@ public class MiniMax
                 if (tab[i][j] == 0)
                 {
                     retorno.marcaVazio(i, j);
-                } else
+                }
+                else
                 {
                     if (tab[i][j] == 1)
                     {
                         retorno.marcaX(i, j);
-                    } else
+                    }
+                    else
                     {
                         retorno.marcaO(i, j);
                     }
@@ -216,12 +220,14 @@ public class MiniMax
         if (ganhou(tab, 1))
         {
             return 1;
-        } else
+        }
+        else
         {
             if (ganhou(tab, -1))
             {
                 return -1;
-            } else
+            }
+            else
             {
                 return 0;
             }
