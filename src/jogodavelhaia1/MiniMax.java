@@ -9,7 +9,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Kaszuba
+ * @author Kaszuba Adaptado de: André Filipe de Moraes Batista, Luiz Fernando de
+ * Oliveira Jacintho Disponível em:
+ * http://aleph0.info/cursos/ia/trab/luis/3/J2Velha.pdf
  */
 public class MiniMax
 {
@@ -34,18 +36,14 @@ public class MiniMax
                 if (tabuleiro.getTabuleiro()[i][j] == '-')
                 {
                     valores[i][j] = 0;
+                    continue;
                 }
-                else
+                if (tabuleiro.getTabuleiro()[i][j] == 'X')
                 {
-                    if (tabuleiro.getTabuleiro()[i][j] == 'X')
-                    {
-                        valores[i][j] = 1;
-                    }
-                    else
-                    {
-                        valores[i][j] = -1;
-                    }
+                    valores[i][j] = 1;
+                    continue;
                 }
+                valores[i][j] = -1;
             }
         }
         return valores;
@@ -61,18 +59,14 @@ public class MiniMax
                 if (tab[i][j] == 0)
                 {
                     retorno.marcaVazio(i, j);
+                    continue;
                 }
-                else
+                if (tab[i][j] == 1)
                 {
-                    if (tab[i][j] == 1)
-                    {
-                        retorno.marcaX(i, j);
-                    }
-                    else
-                    {
-                        retorno.marcaO(i, j);
-                    }
+                    retorno.marcaX(i, j);
+                    continue;
                 }
+                retorno.marcaO(i, j);
             }
         }
         return retorno;
@@ -145,11 +139,7 @@ public class MiniMax
                 return true;
             }
         }
-        if (ganhouDiagonalPrincipal(tab, v) || ganhouDiagonalSecundaria(tab, v))
-        {
-            return true;
-        }
-        return false;
+        return ganhouDiagonalPrincipal(tab, v) || ganhouDiagonalSecundaria(tab, v);
     }
 
     public boolean ganhouLinha(int[][] tab, int l, int v)
@@ -221,17 +211,11 @@ public class MiniMax
         {
             return 1;
         }
-        else
+        if (ganhou(tab, -1))
         {
-            if (ganhou(tab, -1))
-            {
-                return -1;
-            }
-            else
-            {
-                return 0;
-            }
+            return -1;
         }
+        return 0;
     }
 
     public ArrayList<Sucessor> gerarSucessores(int tab[][], int v)

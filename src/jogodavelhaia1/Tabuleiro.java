@@ -10,7 +10,7 @@ package jogodavelhaia1;
  */
 public class Tabuleiro
 {
-    private char[][] tab = new char[3][3];
+    private final char[][] tab = new char[3][3];
 
     public Tabuleiro()
     {
@@ -34,10 +34,7 @@ public class Tabuleiro
             this.tab[x][y] = 'X';
             return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
     public boolean marcaO(int x, int y)
@@ -51,10 +48,7 @@ public class Tabuleiro
             this.tab[x][y] = 'O';
             return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
     public boolean marcaVazio(int x, int y)
@@ -133,20 +127,12 @@ public class Tabuleiro
         {
             return true;
         }
-        if (tab[0][0] != '-' && tab[0][1] != '-' && tab[0][2] != '-' && tab[1][0] != '-' && tab[1][1] != '-' && tab[1][2] != '-' && tab[2][0] != '-' && tab[2][1] != '-' && tab[2][2] != '-')
-        {
-            return true;
-        }
-        return false;
+        return tab[0][0] != '-' && tab[0][1] != '-' && tab[0][2] != '-' && tab[1][0] != '-' && tab[1][1] != '-' && tab[1][2] != '-' && tab[2][0] != '-' && tab[2][1] != '-' && tab[2][2] != '-';
     }
 
     public boolean empate()
     {
-        if (tab[0][0] != '-' && tab[0][1] != '-' && tab[0][2] != '-' && tab[1][0] != '-' && tab[1][1] != '-' && tab[1][2] != '-' && tab[2][0] != '-' && tab[2][1] != '-' && tab[2][2] != '-')
-        {
-            return true;
-        }
-        return false;
+        return tab[0][0] != '-' && tab[0][1] != '-' && tab[0][2] != '-' && tab[1][0] != '-' && tab[1][1] != '-' && tab[1][2] != '-' && tab[2][0] != '-' && tab[2][1] != '-' && tab[2][2] != '-';
     }
 
     public char[][] getTabuleiro()

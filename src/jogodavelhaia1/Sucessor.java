@@ -7,7 +7,8 @@ package jogodavelhaia1;
 
 /**
  *
- * @author Kaszuba
+ * @author André Filipe de Moraes Batista, Luiz Fernando de Oliveira Jacintho
+ * Disponível em: http://aleph0.info/cursos/ia/trab/luis/3/J2Velha.pdf
  */
 public class Sucessor
 {
@@ -20,10 +21,7 @@ public class Sucessor
         tabuleiro = new int[tam][tam];
         for (int i = 0; i < tam; i++)
         {
-            for (int j = 0; j < tam; j++)
-            {
-                tabuleiro[i][j] = tab[i][j];
-            }
+            System.arraycopy(tab[i], 0, tabuleiro[i], 0, tam);
         }
     }
 }
